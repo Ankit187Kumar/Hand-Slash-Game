@@ -1,74 +1,45 @@
-# Hand Slash Quiz 🔴🔵
+# 🔴🔵 Hand Slash Quiz
 
-A playable, futuristic Beat-Saber-style hand-gesture quiz game. Slash the correct
-glowing answer bubble with your virtual LED baton — right hand = red, left hand = blue —
-before it reaches you.
+**Hand Slash Quiz** is a futuristic, interactive **Beat Saber-style hand-gesture quiz game** that combines real-time hand tracking with fast-paced quiz gameplay.
 
-Built with **Next.js 14 (App Router) + React + TypeScript + Tailwind CSS + MediaPipe Hands**.
+Players use their hands as virtual LED batons to slash the correct answer bubble before it reaches them. The **right hand controls the red baton 🔴**, while the **left hand controls the blue baton 🔵**.
 
-## Features implemented
+## ✨ Key Features
 
-- Start → Auth (auto-register / login) → Main Menu → How To Play / High Scores → Play → Game Complete flow
-- Username persistence, best score, and games-played tracking via `localStorage`
-- Real webcam hand tracking (MediaPipe Hands, loaded from CDN at runtime) detecting both hands,
-  with right hand mapped to a red baton and left hand to a blue baton
-- 3-2-1-GO countdown before each match
-- 10 unique random questions per game pulled from `data/questions.json` (no repeats in a game)
-- Beat-Saber-style flying answer bubbles (grow + move toward the player) with a per-question timer bar
-- Real-time collision detection between baton (index fingertip) and bubbles
-- Slash flash / particle "explode" effect + synthesized hit/correct/wrong sound effects (Web Audio,
-  no external audio files needed)
-- Score handling: correct +1, wrong −1, locks the question once answered so it can't be double-counted
-- Game Complete screen with final score, correct/wrong counts, total time, best score, games played,
-  Play Again / Main Menu actions
-- Fully responsive, dark neon cyberpunk visual design with live camera feed background
+* Real-time webcam hand tracking using **MediaPipe Hands**
+* Gesture-based gameplay with two-hand support
+* Right hand → Red LED baton
+* Left hand → Blue LED baton
+* 3-2-1-GO countdown before gameplay
+* 10 unique random questions in every game
+* No repeated questions within a single game
+* Flying, glowing answer bubbles
+* Real-time collision detection between hand and answer bubbles
+* Per-question timer and progress indicator
+* Correct answer: **+1 point**
+* Wrong answer: **−1 point**
+* Hit flash, particle explosion, and synthesized sound effects
+* Automatic username, best score, and games-played tracking
+* Game Complete screen with detailed performance results
+* Play Again and Main Menu options
+* Futuristic neon/cyberpunk visual design
+* Fully responsive browser-based experience
 
-## Getting started
+## 🛠️ Technology
+
+Built using **Next.js 14, React, TypeScript, Tailwind CSS, MediaPipe Hands, Web Audio API, and Vercel**.
+
+## 🎮 Live Demo
+
+**https://hand-slash-quiz.vercel.app/**
+
+## 🚀 Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000, allow camera access, and play. Best experienced in a well-lit
-room with both hands visible to the webcam.
+Then open **http://localhost:3000** in your browser and allow webcam access.
 
-## Deploying to Vercel
-
-Push this folder to a GitHub repo and import it in Vercel (framework preset: Next.js),
-or run:
-
-```bash
-npm i -g vercel
-vercel
-```
-
-No environment variables or backend are required — MediaPipe is loaded client-side from a
-CDN and all game/user data lives in the browser's `localStorage`.
-
-## Editing questions
-
-Add/edit entries in `data/questions.json`. Each question needs exactly two `options` and an
-`answer` that matches one of them exactly. Keep at least 10 questions in the bank so a full
-game can always be assembled without repeats.
-
-## Project structure
-
-```
-app/                 Next.js App Router pages & global styles
-components/Game.tsx  Screen orchestrator (start/auth/menu/howto/highscores/complete)
-components/PlayScreen.tsx  Camera, hand tracking, bubbles, collisions, HUD
-lib/useHandTracking.ts    MediaPipe Hands loader + tracking hook
-lib/storage.ts       localStorage-backed user/score persistence
-lib/sound.ts          Web Audio synthesized sound effects
-data/questions.json  Question bank
-```
-
-## Notes & known limitations
-
-- Requires a browser with webcam + WebAudio support (modern Chrome/Edge/Firefox/Safari).
-- MediaPipe scripts are fetched from `cdn.jsdelivr.net` at runtime — make sure that domain
-  isn't blocked by your network/firewall.
-- Hand tracking accuracy depends on lighting and camera quality; `modelComplexity: 0` is
-  used for speed. Increase it in `lib/useHandTracking.ts` if you need more accuracy and have
-  headroom on lower-end devices.
+For the best gameplay experience, use a good-quality webcam in a well-lit environment with both hands clearly visible.
